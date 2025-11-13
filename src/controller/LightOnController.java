@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import model.LightOnModel;
 import view.LightOnView;
 
@@ -57,6 +58,7 @@ public class LightOnController {
     }
 
     public void kapcsol(int index) {
+        JButton[] gombok = view.getGombok();
         toggle(index);
         int row = index / 3;
         int col = index % 3;
@@ -66,6 +68,7 @@ public class LightOnController {
         if (col > 0) toggle(index - 1);
         if (col < 2) toggle(index + 1);
 
+        animateButton(gombok[index], gombok[index].getBackground(), lampaLista[index].getAllapot() == 1 ? Color.YELLOW : Color.DARK_GRAY);
         refreshView();
     }
 
@@ -146,4 +149,30 @@ public class LightOnController {
             JOptionPane.showMessageDialog(view, "Hiba a betöltés során: " + ex.getMessage());
         }
     }
+    
+private void animateButton(JButton gomb, Color start, Color end) {
+    Timer timer = new Timer(30, null); // gyorsabb, simább animáció
+    final int steps = 15;
+    final int[] currentStep = {0};
+
+    timer.addActionListener(e -> {
+        float t = (float) currentStep[0] / steps;
+        // easing in-out (smoother)
+        t = t * t * (3 - 2 * t);
+
+        int r = (int) (start.getRed() * (1 - t) + end.getRed() * t);
+        int g = (int) (start.getGreen() * (1 - t) + end.getGreen() * t);
+        int b = (int) (start.getBlue() * (1 - t) + end.getBlue() * t);
+
+        gomb.setBackground(new Color(r, g, b));
+        currentStep[0]++;
+
+        if (currentStep[0] > steps) {
+            ((Timer) e.getSource()).stop();
+        }
+    });
+    timer.start();
+}
+
+
 }
