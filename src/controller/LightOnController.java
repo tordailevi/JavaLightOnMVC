@@ -1,8 +1,11 @@
 package controller;
 
 import java.awt.Color;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import model.LightOnModel;
 import view.LightOnView;
 
@@ -17,9 +20,14 @@ public class LightOnController {
         listaFeltoltes();
         initEventek();
         refreshView();
+        frissitSzam();
+        ellenorizGyozelem();
     }
 
-    // kezdeti random állapot
+    public LightOnModel[] getLampaLista() {
+        return lampaLista;
+    }
+
     public void listaFeltoltes() {
         for (int i = 0; i < lampaLista.length; i++) {
             int veletlen = RND.nextInt(2);
@@ -27,35 +35,45 @@ public class LightOnController {
         }
     }
 
-    // minden gombra event
     private void initEventek() {
         JButton[] gombok = view.getGombok();
         for (int i = 0; i < gombok.length; i++) {
             final int index = i;
-            gombok[i].addActionListener(e -> kapcsol(index));
+            gombok[i].addActionListener(e -> {
+                kapcsol(index);
+                frissitSzam();
+                ellenorizGyozelem();
+            });
         }
 
-        // új játék gomb
-        view.getBtnUjJatek().addActionListener(e -> ujJatek());
+        view.getBtnUjJatek().addActionListener(e -> {
+            ujJatek();
+            frissitSzam();
+            ellenorizGyozelem();
+        });
+
+        view.getMnuMentes().addActionListener(e -> mentes());
+        view.getMnuBetoltes().addActionListener(e -> betoltes());
     }
 
-    // lámpa és szomszédai váltása
-    private void kapcsol(int index) {
+    public void kapcsol(int index) {
         toggle(index);
-        if (index - 3 >= 0) toggle(index - 3); // fölötte
-        if (index + 3 < 9) toggle(index + 3);  // alatta
-        if (index % 3 != 0) toggle(index - 1); // balra
-        if (index % 3 != 2) toggle(index + 1); // jobbra
+        int row = index / 3;
+        int col = index % 3;
+
+        if (row > 0) toggle(index - 3);
+        if (row < 2) toggle(index + 3);
+        if (col > 0) toggle(index - 1);
+        if (col < 2) toggle(index + 1);
+
         refreshView();
     }
 
-    // egy adott lámpa állapotváltása
-    private void toggle(int index) {
+    public void toggle(int index) {
         LightOnModel lampa = lampaLista[index];
         lampa.setAllapot(lampa.getAllapot() == 0 ? 1 : 0);
     }
 
-    // színek frissítése
     private void refreshView() {
         JButton[] gombok = view.getGombok();
         for (int i = 0; i < lampaLista.length; i++) {
@@ -67,12 +85,65 @@ public class LightOnController {
         }
     }
 
-    // ÚJ JÁTÉK – véletlen új állapot
-    private void ujJatek() {
+    public void ujJatek() {
         for (int i = 0; i < lampaLista.length; i++) {
             int random = RND.nextInt(2);
             lampaLista[i].setAllapot(random);
         }
         refreshView();
+    }
+
+    private void frissitSzam() {
+        int lekapcs = 0;
+        for (LightOnModel lampa : lampaLista) {
+            if (lampa.getAllapot() == 0) lekapcs++;
+        }
+        view.getTxtLekapcsLampakSzama().setText(String.valueOf(lekapcs));
+    }
+
+    private void ellenorizGyozelem() {
+        boolean mindenFel = true;
+        for (LightOnModel lampa : lampaLista) {
+            if (lampa.getAllapot() == 0) {
+                mindenFel = false;
+                break;
+            }
+        }
+        if (mindenFel) {
+            view.getTxtEredmenyKiiras().setText("🎉 Gratulálok, minden lámpa fel van kapcsolva!");
+        } else {
+            view.getTxtEredmenyKiiras().setText("Játék folyamatban...");
+        }
+    }
+
+    private void mentes() {
+        try (FileWriter fw = new FileWriter("lights_save.txt")) {
+            for (LightOnModel lampa : lampaLista) {
+                fw.write(lampa.getAllapot() + "\n");
+            }
+            JOptionPane.showMessageDialog(view, "Mentés kész!");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(view, "Mentés sikertelen: " + ex.getMessage());
+        }
+    }
+    
+    private void betoltes() {
+        try (java.util.Scanner sc = new java.util.Scanner(new java.io.File("lights_save.txt"))) {
+            int i = 0;
+            while (sc.hasNextLine() && i < lampaLista.length) {
+                String sor = sc.nextLine();
+                int allapot = Integer.parseInt(sor.trim());
+                lampaLista[i].setAllapot(allapot);
+                i++;
+            }
+            refreshView();
+            frissitSzam();
+            ellenorizGyozelem();
+            JOptionPane.showMessageDialog(view, "Betöltés kész!");
+        } catch (java.io.FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(view, "Nincs mentett fájl!");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(view, "Hiba a betöltés során: " + ex.getMessage());
+        }
     }
 }

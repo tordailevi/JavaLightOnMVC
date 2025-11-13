@@ -3,6 +3,7 @@ package view;
 
 import java.awt.HeadlessException;
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -36,7 +37,8 @@ public class LightOnView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnuMentes = new javax.swing.JMenuItem();
+        mnuBetoltes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -45,59 +47,74 @@ public class LightOnView extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), new java.awt.Color(255, 204, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(255, 204, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), new java.awt.Color(255, 204, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(255, 204, 0)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), new java.awt.Color(255, 204, 0), new java.awt.Color(102, 102, 102), new java.awt.Color(255, 204, 0))));
         jPanel1.setLayout(new java.awt.GridLayout(3, 3, 5, 5));
 
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton1.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton1.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton1);
 
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton2.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton2.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton2);
 
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton3.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton3.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton3.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton3);
 
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton4.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton4.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton4.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton4);
 
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton5.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton5.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton5.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton5);
 
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton6.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton6.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton6.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton6);
 
+        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton7.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton7.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton7.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton7);
 
+        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton8.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton8.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton8.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton8);
 
+        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton9.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton9.setMinimumSize(new java.awt.Dimension(100, 100));
         jButton9.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanel1.add(jButton9);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
         jLabel1.setText("Lekapcsolt lámpák száma:");
 
         txtLekapcsLampakSzama.setEditable(false);
+        txtLekapcsLampakSzama.setFont(new java.awt.Font("Wide Latin", 1, 14)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Wide Latin", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LightOn");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,6 +140,8 @@ public class LightOnView extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
         txtEredmenyKiiras.setEditable(false);
 
         btnUjJatek.setText("Új játék");
@@ -133,20 +152,22 @@ public class LightOnView extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtEredmenyKiiras, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnUjJatek)
-                .addGap(29, 29, 29))
+                .addComponent(txtEredmenyKiiras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUjJatek, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEredmenyKiiras, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(btnUjJatek))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUjJatek, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(txtEredmenyKiiras))
                 .addContainerGap())
         );
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jMenu1.setText("Beállítások");
 
@@ -158,8 +179,11 @@ public class LightOnView extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Mentés");
-        jMenu1.add(jMenuItem2);
+        mnuMentes.setText("Mentés");
+        jMenu1.add(mnuMentes);
+
+        mnuBetoltes.setText("Betöltés");
+        jMenu1.add(mnuBetoltes);
 
         jMenuBar1.add(jMenu1);
 
@@ -235,6 +259,16 @@ public class LightOnView extends javax.swing.JFrame {
         return txtLekapcsLampakSzama; 
     }
 
+    public JMenuItem getMnuBetoltes() {
+        return mnuBetoltes;
+    }
+
+    public JMenuItem getMnuMentes() {
+        return mnuMentes;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUjJatek;
     private javax.swing.JButton jButton1;
@@ -251,10 +285,11 @@ public class LightOnView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JMenuItem mnuBetoltes;
+    private javax.swing.JMenuItem mnuMentes;
     private javax.swing.JTextField txtEredmenyKiiras;
     private javax.swing.JTextField txtLekapcsLampakSzama;
     // End of variables declaration//GEN-END:variables
