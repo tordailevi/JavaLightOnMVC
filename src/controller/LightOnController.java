@@ -110,7 +110,7 @@ public class LightOnController {
             }
         }
         if (mindenFel) {
-            view.getTxtEredmenyKiiras().setText("🎉 Gratulálok, minden lámpa fel van kapcsolva!");
+            view.getTxtEredmenyKiiras().setText("Gratulálok, minden lámpa fel van kapcsolva!");
         } else {
             view.getTxtEredmenyKiiras().setText("Játék folyamatban...");
         }

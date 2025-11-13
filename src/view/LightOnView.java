@@ -41,6 +41,7 @@ public class LightOnView extends javax.swing.JFrame {
         mnuBetoltes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -143,7 +144,9 @@ public class LightOnView extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         txtEredmenyKiiras.setEditable(false);
+        txtEredmenyKiiras.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
 
+        btnUjJatek.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUjJatek.setText("Új játék");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -266,8 +269,6 @@ public class LightOnView extends javax.swing.JFrame {
     public JMenuItem getMnuMentes() {
         return mnuMentes;
     }
-
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUjJatek;
